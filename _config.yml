@@ -23,7 +23,7 @@ repository               : "Lucas-zhao2100/Lucas-zhao2100.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
+  avatar           : "image1.jpg"
   name             : "Chunyu Zhao"
   pronouns         : # example: "she/her"  
   bio              : "Short biography for the left-hand sidebar"
