@@ -1,7 +1,7 @@
 ---
 title: "Alteration mineral information extraction based on image super-resolution technology"
 collection: publications
-category: journal-articles
+category: manuscripts
 permalink: https://www.sciencedirect.com/science/article/pii/S1569843225005199
 excerpt: 'High-resolution remote sensing imagery is crucial for advancing earth science research. However, the scarcity of high-resolution data in specific non-visible spectral bands, such as short-wave infrared (SWIR) or thermal infrared (TIR), is challenge for various downstream tasks.'
 date: 2025-09-30
