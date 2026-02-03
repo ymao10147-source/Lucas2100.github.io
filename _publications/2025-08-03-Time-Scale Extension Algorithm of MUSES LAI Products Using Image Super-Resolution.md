@@ -2,7 +2,7 @@
 title: "Time-Scale Extension Algorithm of MUSES LAI Products Using Image Super-Resolution"
 collection: publications
 category: conferences
-permalink: [/publication/2024-02-17-paper-title-number-4](https://ieeexplore.ieee.org/document/11242615)
+permalink: https://ieeexplore.ieee.org/document/11242615
 excerpt: 'This study demonstrated the TEA can successfully extend the time span of the 1km MUSES LAI product back to 1981, and when compared to the bicubic interpolation, the TEA achieved superior performance.'
 date: 2025-08-03
 venue: 'IGARSS 2025 - 2025 IEEE International Geoscience and Remote Sensing Symposium'
