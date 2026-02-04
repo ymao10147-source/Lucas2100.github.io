@@ -5,10 +5,9 @@ redirect_from:
   - /about/
   - /about.html
 ---
-
 News
 ====
-* **[Sept 2025]** 📝 Our new paper on **CBSR** has been officially published! [[See Publication](/publication/2025-09-30-Alteration-mineral-information-extraction-based-on-image-super-resolution-technology)]
+* **[Sept 2025]** 📝 Our new paper on **CBSR** has been officially published! [[See Publication](/_publications/2025-09-30-Alteration-mineral-information-extraction-based-on-image-super-resolution-technology)]
 * **[Aug 2025]** 📢 Presented our work on **Time-Scale Extension Algorithm of MUSES LAI Products Using Image Super-Resolution** at **IGARSS 2025** in Brisbane, Australia. Great to meet friends in the remote sensing community! [[See Talk](/talks/2025-igarss-muses-lai)]
 
 A data-driven personal website
