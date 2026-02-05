@@ -5,39 +5,55 @@ permalink: /publications/
 author_profile: true
 ---
 
+{% if site.author.googlescholar %}
+  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
+{% endif %}
+
 {% include base_path %}
 
-{% comment %} 获取并按日期倒序排列所有文献 {% endcomment %}
-{% assign entries = site.publications | sort: 'date' | reverse %}
-{% assign total_count = entries.size %}
+{% comment %} 
+  1. 获取所有文献并按日期倒序排列
+{% endcomment %}
+{% assign all_pubs = site.publications | sort: 'date' | reverse %}
+{% assign total_num = all_pubs.size %}
 
-{% comment %} 按年份分组显示 {% endcomment %}
-{% assign postsByYear = entries | group_by_exp: "post", "post.date | date: '%Y'" %}
+{% comment %} 
+  2. 提取所有年份并去重，用于大标题
+{% endcomment %}
+{% assign years = all_pubs | map: 'date' | map: '%Y' | uniq %}
 
-{% for year in postsByYear %}
-  <h2 id="{{ year.name }}" class="archive__subtitle">{{ year.name }}</h2>
+{% for year in years %}
+  <h2 id="{{ year }}">{{ year }}</h2>
+  <hr />
 
-  {% comment %} 期刊部分 {% endcomment %}
-  {% assign journals = year.items | where: "type", "journal" %}
-  {% if journals.size > 0 %}
+  {% comment %} 3. 处理该年份下的 Journal Articles {% endcomment %}
+  {% assign year_journals = all_pubs | where_exp: "item", "item.date contains year" | where: "type", "journal" %}
+  {% if year_journals.size > 0 %}
     <p><strong>Journal articles</strong></p>
-    <ol reversed start="{{ total_count }}">
-    {% for post in journals %}
-      {% include archive-single.html %}
-      {% assign total_count = total_count | minus: 1 %}
+    <ul style="list-style-type: none; margin-left: 0;">
+    {% for post in year_journals %}
+      <li style="margin-bottom: 10px;">
+        {{ total_num }}. {{ post.citation }} 
+        {% if post.paperurl %}<a href="{{ post.paperurl }}">[Link]</a>{% endif %}
+      </li>
+      {% assign total_num = total_num | minus: 1 %}
     {% endfor %}
-    </ol>
+    </ul>
   {% endif %}
 
-  {% comment %} 会议部分 {% endcomment %}
-  {% assign conferences = year.items | where: "type", "conference" %}
-  {% if conferences.size > 0 %}
+  {% comment %} 4. 处理该年份下的 Conference Papers {% endcomment %}
+  {% assign year_confs = all_pubs | where_exp: "item", "item.date contains year" | where: "type", "conference" %}
+  {% if year_confs.size > 0 %}
     <p><strong>Conference papers</strong></p>
-    <ol reversed start="{{ total_count }}">
-    {% for post in conferences %}
-      {% include archive-single.html %}
-      {% assign total_count = total_count | minus: 1 %}
+    <ul style="list-style-type: none; margin-left: 0;">
+    {% for post in year_confs %}
+      <li style="margin-bottom: 10px;">
+        {{ total_num }}. {{ post.citation }} 
+        {% if post.paperurl %}<a href="{{ post.paperurl }}">[Link]</a>{% endif %}
+      </li>
+      {% assign total_num = total_num | minus: 1 %}
     {% endfor %}
-    </ol>
+    </ul>
   {% endif %}
+
 {% endfor %}
