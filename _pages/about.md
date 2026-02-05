@@ -16,10 +16,11 @@ redirect_from:
   }
 </style>
 
-News
+🆕 News
 ====
-* **[Sept 2025]** 📝 Our new paper on **Alteration mineral information extraction based on image super resolution technology** has been officially published! [[See Publication](https://www.sciencedirect.com/science/article/pii/S1569843225005199)]
-* **[Aug 2025]** 📢 Presented our work on **Time-Scale Extension Algorithm of MUSES LAI Products Using Image Super-Resolution** at **IGARSS 2025** in Brisbane, Australia. Great to meet friends in the remote sensing community! [[See Talk](/talks/2025-igarss-muses-lai)]
+* **[Nov 2025]** 📝 Our new paper **An Enhanced CycleGAN to Derive Temporally Continuous NDVI from Sentinel-1 SAR Images** has been officially published in *Remote Sensing*! [[See Publication](https://www.mdpi.com/2072-4292/18/1/56)]
+* **[Sept 2025]** 📝 My new paper **Alteration mineral information extraction based on image super resolution technology** has been officially published in *International Journal of Applied Earth Observation and Geoinformation*! [[See Publication](https://www.sciencedirect.com/science/article/pii/S1569843225005199)]
+* **[Aug 2025]** 📢 Presented our work **Time-Scale Extension Algorithm of MUSES LAI Products Using Image Super-Resolution** at **IGARSS 2025** in Brisbane, Australia. [[See Talk](/talks/2025-igarss-muses-lai)]
 
 A data-driven personal website
 ======
