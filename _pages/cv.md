@@ -9,35 +9,26 @@ redirect_from:
 
 {% include base_path %}
 
-Education
+🎓 **Education**
 ======
-* Ph.D in Version Control Theory, GitHub University, 2029 (expected)
-* M.S. in Remote Sensing Science and Technology, Beijing Normal University, 2026
-* B.S. in Resources Prospecting Engineering, China University of Geosciences (Beijing), 2023
+* M.E. in Remote Sensing Science and Technology, Beijing Normal University, China, 2026 (expected)
+* B.E. in Resources Prospecting Engineering, China University of Geosciences (Beijing), China, 2023
 
-Skills
+🏆 **Honors and Awards**
 ======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* 2025 Award for Grade Academic Scholarship, Beijing Normal University
+* 2023 Award for Grade Academic Scholarship, Beijing Normal University
+* 2023 Outstanding Graduate, China University of Geosciences (Beijing)
+* 2019-2022 Award for Grade Academic Scholarship, China University of Geosciences (Beijing)
   
-Publications
+📚 **Publications**
 ======
   <ul>{% for post in site.publications reversed %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
   
-Talks
+🎤 **Talks**
 ======
   <ul>{% for post in site.talks reversed %}
     {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
   {% endfor %}</ul>
