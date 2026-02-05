@@ -15,10 +15,9 @@ author_profile: true
   1. 获取所有文献并按日期倒序排列
 {% endcomment %}
 {% assign all_pubs = site.publications | sort: 'date' | reverse %}
-{% assign total_num = all_pubs.size %}
 
 {% comment %} 
-  2. 使用 group_by_exp 按年份分组，这比手动匹配更可靠
+  2. 按年份分组
 {% endcomment %}
 {% assign pubs_by_year = all_pubs | group_by_exp: "item", "item.date | date: '%Y'" %}
 
@@ -26,34 +25,32 @@ author_profile: true
   <h2 id="{{ year_group.name }}">{{ year_group.name }}</h2>
   <hr />
 
-  {% comment %} 3. 处理该年份下的 Journal Articles {% endcomment %}
+  {% comment %} 3. Journal Articles: 使用 <ol> 自动从 1 开始编号 {% endcomment %}
   {% assign year_journals = year_group.items | where: "type", "journal" %}
   {% if year_journals.size > 0 %}
     <p><strong>Journal articles</strong></p>
-    <ul style="list-style-type: none; margin-left: 0;">
+    <ol style="margin-left: 2em;">
     {% for post in year_journals %}
       <li style="margin-bottom: 10px;">
-        {{ total_num }}. {{ post.citation }} 
+        {{ post.citation }} 
         {% if post.paperurl %}<a href="{{ post.paperurl }}">[Link]</a>{% endif %}
       </li>
-      {% assign total_num = total_num | minus: 1 %}
     {% endfor %}
-    </ul>
+    </ol>
   {% endif %}
 
-  {% comment %} 4. 处理该年份下的 Conference Papers {% endcomment %}
+  {% comment %} 4. Conference Papers: 重新开启一个 <ol>，会自动从 1 开始 {% endcomment %}
   {% assign year_confs = year_group.items | where: "type", "conference" %}
   {% if year_confs.size > 0 %}
     <p><strong>Conference papers</strong></p>
-    <ul style="list-style-type: none; margin-left: 0;">
+    <ol style="margin-left: 2em;">
     {% for post in year_confs %}
       <li style="margin-bottom: 10px;">
-        {{ total_num }}. {{ post.citation }} 
+        {{ post.citation }} 
         {% if post.paperurl %}<a href="{{ post.paperurl }}">[Link]</a>{% endif %}
       </li>
-      {% assign total_num = total_num | minus: 1 %}
     {% endfor %}
-    </ul>
+    </ol>
   {% endif %}
 
 {% endfor %}
