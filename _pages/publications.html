@@ -16,8 +16,8 @@ author_profile: true
 {% for year in pubs_by_year %}
 <h2>{{ year.name }}</h2>
 
-{% assign journal_pubs = year.items | where: "type", "journal" | sort: "date" %}
-{% assign conference_pubs = year.items | where: "type", "conference" | sort: "date" %}
+{% assign journal_pubs = year.items | where: "type", "journal" | sort: "date" | reverse %}
+{% assign conference_pubs = year.items | where: "type", "conference" | sort: "date" | reverse %}
 
 {% if journal_pubs.size > 0 %}
 <h3>Journal Articles</h3>
@@ -26,7 +26,10 @@ author_profile: true
 {% for post in journal_pubs %}
   {% assign counter = counter | plus: 1 %}
   {% assign citation_with_bold = post.citation | replace: my_name, "**" | append: my_name | append: "**" %}
-  <li>{{ counter }}. {{ citation_with_bold | markdownify }}{% if post.paperurl %} <a href="{{ post.paperurl }}">[Link]</a>{% endif %}</li>
+  {% capture citation_final %}
+    {{ post.citation | replace: my_name, "**" | append: my_name | append: "**" }}
+  {% endcapture %}
+  <li>{{ counter }}. {{ citation_final | markdownify }}{% if post.paperurl %} <a href="{{ post.paperurl }}">[Link]</a>{% endif %}</li>
 {% endfor %}
 </ul>
 {% endif %}
@@ -37,8 +40,10 @@ author_profile: true
 {% assign counter = 0 %}
 {% for post in conference_pubs %}
   {% assign counter = counter | plus: 1 %}
-  {% assign citation_with_bold = post.citation | replace: my_name, "**" | append: my_name | append: "**" %}
-  <li>{{ counter }}. {{ citation_with_bold | markdownify }}{% if post.paperurl %} <a href="{{ post.paperurl }}">[Link]</a>{% endif %}</li>
+  {% capture citation_final %}
+    {{ post.citation | replace: my_name, "**" | append: my_name | append: "**" }}
+  {% endcapture %}
+  <li>{{ counter }}. {{ citation_final | markdownify }}{% if post.paperurl %} <a href="{{ post.paperurl }}">[Link]</a>{% endif %}</li>
 {% endfor %}
 </ul>
 {% endif %}
