@@ -7,29 +7,28 @@ author_profile: true
 
 {% include base_path %}
 
+## Publications
+
 {% assign pubs_by_year = site.publications | group_by: "year" | sort: "name" | reverse %}
 
 {% for year in pubs_by_year %}
 ## {{ year.name }}
 
-### Journal Articles
-{% for post in year.items %}
-  {% if post.type == "journal" %}
-- {{ post.citation }}
-  {% if post.paperurl %}
-  [Link]({{ post.paperurl }})
-  {% endif %}
-  {% endif %}
-{% endfor %}
+{% assign journal_pubs = year.items | where: "type", "journal" %}
+{% assign conference_pubs = year.items | where: "type", "conference" %}
 
-### Conference Papers
-{% for post in year.items %}
-  {% if post.type == "conference" %}
-- {{ post.citation }}
-  {% if post.paperurl %}
-  [Link]({{ post.paperurl }})
-  {% endif %}
-  {% endif %}
+{% if journal_pubs.size > 0 %}
+### Journal Articles
+{% for post in journal_pubs %}
+- {{ post.citation }}{% if post.paperurl %} [Link]({{ post.paperurl }}){% endif %}
 {% endfor %}
+{% endif %}
+
+{% if conference_pubs.size > 0 %}
+### Conference Papers
+{% for post in conference_pubs %}
+- {{ post.citation }}{% if post.paperurl %} [Link]({{ post.paperurl }}){% endif %}
+{% endfor %}
+{% endif %}
 
 {% endfor %}
