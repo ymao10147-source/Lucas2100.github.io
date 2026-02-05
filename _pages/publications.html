@@ -12,23 +12,27 @@ author_profile: true
 {% assign pubs_by_year = site.publications | group_by: "year" | sort: "name" | reverse %}
 
 {% for year in pubs_by_year %}
-## {{ year.name }}
+<h2>{{ year.name }}</h2>
 
 {% assign journal_pubs = year.items | where: "type", "journal" %}
 {% assign conference_pubs = year.items | where: "type", "conference" %}
 
 {% if journal_pubs.size > 0 %}
-### Journal Articles
+<h3>Journal Articles</h3>
+<ul>
 {% for post in journal_pubs %}
-- {{ post.citation }}{% if post.paperurl %} [Link]({{ post.paperurl }}){% endif %}
+  <li>{{ post.citation }}{% if post.paperurl %} <a href="{{ post.paperurl }}">[Link]</a>{% endif %}</li>
 {% endfor %}
+</ul>
 {% endif %}
 
 {% if conference_pubs.size > 0 %}
-### Conference Papers
+<h3>Conference Papers</h3>
+<ul>
 {% for post in conference_pubs %}
-- {{ post.citation }}{% if post.paperurl %} [Link]({{ post.paperurl }}){% endif %}
+  <li>{{ post.citation }}{% if post.paperurl %} <a href="{{ post.paperurl }}">[Link]</a>{% endif %}</li>
 {% endfor %}
+</ul>
 {% endif %}
 
 {% endfor %}
