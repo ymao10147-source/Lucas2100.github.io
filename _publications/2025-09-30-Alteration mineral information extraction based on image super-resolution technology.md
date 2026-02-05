@@ -1,10 +1,3 @@
-<style>
-.page__content p {
-  text-align: justify;
-  text-justify: inter-word;
-}
-</style>
-
 ---
 title: "Alteration mineral information extraction based on image super-resolution technology"
 collection: publications
