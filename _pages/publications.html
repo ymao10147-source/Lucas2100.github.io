@@ -11,40 +11,33 @@ author_profile: true
 
 {% include base_path %}
 
-{% comment %} 
-  1. 准备数据：按日期从新到旧排列
-{% endcomment %}
 {% assign all_pubs = site.publications | sort: 'date' | reverse %}
 
-{% comment %} 
-
-  2. 期刊部分：全局统计并倒序编号
-{% endcomment %}
+{% comment %} 2. 期刊部分 {% endcomment %}
 {% assign journals = all_pubs | where: "type", "journal" %}
 {% if journals.size > 0 %}
-  <h2 class="archive__subtitle">Journal articles</h2>
-  <hr />
-  <ol reversed start="{{ journals.size }}" style="margin-left: 2em;">
+  {% comment %} 减小 h2 底部边距，用 border-bottom 代替 hr 会更紧凑 {% endcomment %}
+  <h2 class="archive__subtitle" style="margin-bottom: 0.5em; border-bottom: 1px solid #eee;">Journal articles</h2>
+  
+  {% comment %} margin: 顶部0, 右边0, 底部1em, 左边1.2em {% endcomment %}
+  <ol reversed start="{{ journals.size }}" style="margin: 0 0 1.5em 1.2em; padding-left: 0;">
     {% for post in journals %}
-      <li style="margin-bottom: 10px;">
+      <li style="margin-bottom: 10px; padding-left: 0.3em;">
         {{ post.citation }} 
         {% if post.paperurl %}<a href="{{ post.paperurl }}">[Link]</a>{% endif %}
       </li>
     {% endfor %}
   </ol>
-{% endif %
+{% endif %}
 
-{% comment %} 
-
-  3. 会议部分：重新独立统计并倒序编号
-{% endcomment %}
+{% comment %} 3. 会议部分 {% endcomment %}
 {% assign conferences = all_pubs | where: "type", "conference" %}
 {% if conferences.size > 0 %}
-  <h2 class="archive__subtitle">Conference papers</h2>
-  <hr />
-  <ol reversed start="{{ conferences.size }}" style="margin-left: 2em;">
+  <h2 class="archive__subtitle" style="margin-bottom: 0.5em; border-bottom: 1px solid #eee;">Conference papers</h2>
+  
+  <ol reversed start="{{ conferences.size }}" style="margin: 0 0 1.5em 1.2em; padding-left: 0;">
     {% for post in conferences %}
-      <li style="margin-bottom: 10px;">
+      <li style="margin-bottom: 10px; padding-left: 0.3em;">
         {{ post.citation }} 
         {% if post.paperurl %}<a href="{{ post.paperurl }}">[Link]</a>{% endif %}
       </li>
