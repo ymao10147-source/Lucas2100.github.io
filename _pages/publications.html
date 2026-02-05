@@ -7,32 +7,13 @@ author_profile: true
 
 {% include base_path %}
 
-## Publications
-
 {% assign my_name = "Chunyu Zhao" %}
-{% assign pubs_by_year = site.publications | sort: "date" | reverse | group_by: "year" %}
+{% assign pubs_by_year = site.publications | sort: "date" | reverse | group_by_exp: "item", "item.date | date: '%Y'" %}
 
 {% for year in pubs_by_year %}
-### {{ year.name }}
-
-{% assign journal_pubs = year.items | where: "type", "journal" | sort: "date" | reverse %}
-{% if journal_pubs.size > 0 %}
-**Journal Articles**
-{% assign counter = journal_pubs.size %}
-{% for post in journal_pubs %}
-- {{ counter }}. {{ post.citation | replace: my_name, "**" | append: my_name | append: "**" }}{% if post.paperurl %} [Link]({{ post.paperurl }}){% endif %}
-{% assign counter = counter | minus: 1 %}
-{% endfor %}
-{% endif %}
-
-{% assign conference_pubs = year.items | where: "type", "conference" | sort: "date" | reverse %}
-{% if conference_pubs.size > 0 %}
-**Conference Papers**
-{% assign counter = conference_pubs.size %}
-{% for post in conference_pubs %}
-- {{ counter }}. {{ post.citation | replace: my_name, "**" | append: my_name | append: "**" }}{% if post.paperurl %} [Link]({{ post.paperurl }}){% endif %}
-{% assign counter = counter | minus: 1 %}
-{% endfor %}
-{% endif %}
-
+  <h2 id="{{ year.name }}" class="archive__subtitle">{{ year.name }}</h2>
+  
+  {% for post in year.items %}
+    {% include archive-single.html %}
+  {% endfor %}
 {% endfor %}
