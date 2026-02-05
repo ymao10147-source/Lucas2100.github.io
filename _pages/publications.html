@@ -18,16 +18,16 @@ author_profile: true
 {% assign total_num = all_pubs.size %}
 
 {% comment %} 
-  2. 提取所有年份并去重，用于大标题
+  2. 使用 group_by_exp 按年份分组，这比手动匹配更可靠
 {% endcomment %}
-{% assign years = all_pubs | map: 'date' | map: '%Y' | uniq %}
+{% assign pubs_by_year = all_pubs | group_by_exp: "item", "item.date | date: '%Y'" %}
 
-{% for year in years %}
-  <h2 id="{{ year }}">{{ year }}</h2>
+{% for year_group in pubs_by_year %}
+  <h2 id="{{ year_group.name }}">{{ year_group.name }}</h2>
   <hr />
 
   {% comment %} 3. 处理该年份下的 Journal Articles {% endcomment %}
-  {% assign year_journals = all_pubs | where_exp: "item", "item.date contains year" | where: "type", "journal" %}
+  {% assign year_journals = year_group.items | where: "type", "journal" %}
   {% if year_journals.size > 0 %}
     <p><strong>Journal articles</strong></p>
     <ul style="list-style-type: none; margin-left: 0;">
@@ -42,7 +42,7 @@ author_profile: true
   {% endif %}
 
   {% comment %} 4. 处理该年份下的 Conference Papers {% endcomment %}
-  {% assign year_confs = all_pubs | where_exp: "item", "item.date contains year" | where: "type", "conference" %}
+  {% assign year_confs = year_group.items | where: "type", "conference" %}
   {% if year_confs.size > 0 %}
     <p><strong>Conference papers</strong></p>
     <ul style="list-style-type: none; margin-left: 0;">
