@@ -7,34 +7,37 @@ author_profile: true
 
 {% include base_path %}
 
-{% comment %} 按日期倒序排列所有论文 {% endcomment %}
+{% comment %} 获取并按日期倒序排列所有文献 {% endcomment %}
 {% assign entries = site.publications | sort: 'date' | reverse %}
+{% assign total_count = entries.size %}
 
-{% comment %} 按年份分组 {% endcomment %}
+{% comment %} 按年份分组显示 {% endcomment %}
 {% assign postsByYear = entries | group_by_exp: "post", "post.date | date: '%Y'" %}
 
 {% for year in postsByYear %}
   <h2 id="{{ year.name }}" class="archive__subtitle">{{ year.name }}</h2>
-  
-  {% comment %} 处理该年份下的期刊文章 {% endcomment %}
+
+  {% comment %} 期刊部分 {% endcomment %}
   {% assign journals = year.items | where: "type", "journal" %}
   {% if journals.size > 0 %}
     <p><strong>Journal articles</strong></p>
-    <ul>
+    <ol reversed start="{{ total_count }}">
     {% for post in journals %}
       {% include archive-single.html %}
+      {% assign total_count = total_count | minus: 1 %}
     {% endfor %}
-    </ul>
+    </ol>
   {% endif %}
 
-  {% comment %} 处理该年份下的会议论文 {% endcomment %}
+  {% comment %} 会议部分 {% endcomment %}
   {% assign conferences = year.items | where: "type", "conference" %}
   {% if conferences.size > 0 %}
     <p><strong>Conference papers</strong></p>
-    <ul>
+    <ol reversed start="{{ total_count }}">
     {% for post in conferences %}
       {% include archive-single.html %}
+      {% assign total_count = total_count | minus: 1 %}
     {% endfor %}
-    </ul>
+    </ol>
   {% endif %}
 {% endfor %}
