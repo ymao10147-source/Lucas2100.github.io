@@ -36,21 +36,21 @@ redirect_from:
   {% endfor %}
 </ol>
 
-{% comment %} 
-
 ### Conference Papers
 {% assign conferences = all_pubs | where: "type", "conference" %}
-<ol reversed start="{{ conferences.size }}" style="margin: 0 0 1em 1.2em; padding-left: 0;">
+<ol reversed start="{{ conferences.size }}" style="margin-left: 0;">
   {% for post in conferences %}
-    <li style="margin-bottom: 0.6em; padding-left: 0.3em;">
+    <li style="margin-bottom: 0.8em;">
       {{ post.citation }} 
       {% if post.paperurl %}<a href="{{ post.paperurl }}">[Link]</a>{% endif %}
     </li>
   {% endfor %}
 </ol>
-  
+
 🎤 **Talks**
 ======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
+<ul>
+  {% for post in site.talks reversed %}
+    {% include archive-single-talk-cv.html %}
+  {% endfor %}
+</ul>
